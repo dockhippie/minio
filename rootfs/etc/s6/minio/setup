@@ -1,0 +1,4 @@
+#!/bin/bash
+
+declare -x MINIO_ACCESS_KEY
+declare -x MINIO_SECRET_KEY
