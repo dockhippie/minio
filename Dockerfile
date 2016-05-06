@@ -11,7 +11,7 @@ ENV GO15VENDOREXPERIMENT 1
 RUN apk update && \
   apk add \
     build-base \
-    go@community \
+    go \
     git && \
   git clone \
     -b ${MINIO_BRANCH} \
