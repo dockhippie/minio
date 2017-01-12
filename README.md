@@ -1,36 +1,26 @@
 # Minio
 
-[![](https://badge.imagelayers.io/webhippie/minio:latest.svg)](https://imagelayers.io/?images=webhippie/minio:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/webhippie/minio.svg)](https://microbadger.com/images/webhippie/minio "Get your own image badge on microbadger.com")
 
-These are docker images for [Minio](https://github.com/minio/minio) running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name minio \
-  --volume /var/lib/minio:/var/lib/minio \
-  webhippie/minio:latest
-```
+These are docker images for [Minio](https://github.com/minio/minio) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/minio/tree/master)
-  available as ```webhippie/minio:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/minio/)
+* [latest](https://github.com/dockhippie/minio/tree/master) available as ```webhippie/minio:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/minio/)
+
+
+## Volumes
+
+* /var/lib/minio
+
+
+## Ports
+
+* 9000
 
 
 ## Available environment variables
-
-
-#!/bin/bash
-
-declare -x MINIO_ACCESS_KEY
-declare -x MINIO_SECRET_KEY
-
 
 ```bash
 ENV MINIO_ACCESS_KEY # Generated if empty
@@ -41,14 +31,7 @@ ENV MINIO_SECRET_KEY # Generated if empty
 ## Inherited environment variables
 
 ```bash
-ENV LOGSTASH_ENABLED false
-ENV LOGSTASH_HOST logstash
-ENV LOGSTASH_PORT 5043
-ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
-ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
-ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
-ENV LOGSTASH_TIMEOUT 15
-ENV LOGSTASH_OPTS
+ENV CRON_ENABLED false
 ```
 
 
@@ -70,5 +53,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
 ```
