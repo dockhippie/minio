@@ -1,12 +1,19 @@
 FROM webhippie/alpine:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
+VOLUME ["/var/lib/minio"]
+
+EXPOSE 9000
+
+WORKDIR /root
+ENTRYPOINT ["/usr/bin/entrypoint"]
+CMD ["/bin/s6-svscan", "/etc/s6"]
+
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
-ENV MINIO_BRANCH master
+ENV MINIO_BRANCH RELEASE.2017-07-24T18-27-35Z
 
 ENV GOPATH /usr/local
-ENV GO15VENDOREXPERIMENT 1
 
 RUN apk update && \
   apk add \
@@ -19,8 +26,11 @@ RUN apk update && \
     /usr/local/src/${MINIO_PATH} && \
   cd \
     /usr/local/src/${MINIO_PATH} && \
-  go build \
-    -o /usr/bin/minio && \
+  go install \
+    ${MINIO_PATH}/... && \
+  cp -f \
+    /usr/local/bin/minio \
+    /usr/bin/ && \
   apk del \
     build-base \
     go \
@@ -29,10 +39,4 @@ RUN apk update && \
     /var/cache/apk/* \
     /usr/local/*
 
-VOLUME ["/var/lib/minio"]
-
 ADD rootfs /
-EXPOSE 9000
-
-WORKDIR /root
-CMD ["/bin/s6-svscan", "/etc/s6"]

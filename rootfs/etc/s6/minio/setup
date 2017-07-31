@@ -1,4 +1,13 @@
 #!/bin/bash
+source /usr/bin/entrypoint
 
-declare -x MINIO_ACCESS_KEY
-declare -x MINIO_SECRET_KEY
+echo "> writing minio config"
+/usr/bin/templater -d -p minio \
+  -o /root/.minio/config.json \
+  /etc/templates/config.tmpl
+
+if [[ $? -ne 0 ]]
+then
+  /bin/s6-svscanctl -t /etc/s6
+  exit 1
+fi

@@ -1,0 +1,122 @@
+{
+  "version": "{{ envString "VERSION" }}",
+  "credential": {
+    "accessKey": "{{ envString "ACCESS_KEY" }}",
+    "secretKey": "{{ envString "SECRET_KEY" }}"
+  },
+  "region": "{{ envString "REGION" }}",
+  "browser": "{{ envString "BROWSER" }}",
+  "logger": {
+    "console": {
+      "enable": true
+    },
+    "file": {
+      "enable": false,
+      "filename": ""
+    }
+  },
+  "notify": {
+    "amqp": {
+      "1": {
+        "enable": {{ envBool "AMQP_ENABLE" }},
+        "url": "{{ envString "AMQP_URL" }}",
+        "exchange": "{{ envString "AMQP_EXCHANGE" }}",
+        "routingKey": "{{ envString "AMQP_ROUTING_KEY" }}",
+        "exchangeType": "{{ envString "AMQP_EXCHANGE_TYPE" }}",
+        "deliveryMode": {{ envInt "AMQP_DELIVERY_MODE" }},
+        "mandatory": {{ envBool "AMQP_MANDATORY" }},
+        "immediate": {{ envBool "AMQP_IMMEDIATE" }},
+        "durable": {{ envBool "AMQP_DURABLE" }},
+        "internal": {{ envBool "AMQP_INTERNAL" }},
+        "noWait": {{ envBool "AMQP_NO_WAIT" }},
+        "autoDeleted": {{ envBool "AMQP_AUTO_DELETED" }}
+      }
+    },
+    "nats": {
+      "1": {
+        "enable": {{ envBool "NATS_ENABLE" }},
+        "address": "{{ envString "NATS_ADDRESS" }}",
+        "subject": "{{ envString "NATS_SUBJECT" }}",
+        "username": "{{ envString "NATS_USERNAME" }}",
+        "password": "{{ envString "NATS_PASSWORD" }}",
+        "token": "{{ envString "NATS_TOKEN" }}",
+        "secure": {{ envBool "NATS_SECURE" }},
+        "pingInterval": {{ envInt "NATS_PING_INTERVAL" }},
+        "streaming": {
+          "enable": {{ envBool "NATS_STREAMING_ENABLE" }},
+          "clusterID": "{{ envString "NATS_STREAMING_CLUSTER_ID" }}",
+          "clientID": "{{ envString "NATS_STREAMING_CLIENT_ID" }}",
+          "async": {{ envBool "NATS_STREAMING_ASYNC" }},
+          "maxPubAcksInflight": {{ envInt "NATS_STREAMING_MAX_PUBACK_INFLIGHT" }}
+        }
+      }
+    },
+    "elasticsearch": {
+      "1": {
+        "enable": {{ envBool "ELASTICSEARCH_ENABLE" }},
+        "format": "{{ envString "ELASTICSEARCH_FORMAT" }}",
+        "url": "{{ envString "ELASTICSEARCH_URL" }}",
+        "index": "{{ envString "ELASTICSEARCH_INDEX" }}"
+      }
+    },
+    "redis": {
+      "1": {
+        "enable": {{ envBool "REDIS_ENABLE" }},
+        "format": "{{ envString "REDIS_FORMAT" }}",
+        "address": "{{ envString "REDIS_ADDRESS" }}",
+        "password": "{{ envString "REDIS_PASSWORD" }}",
+        "key": "{{ envString "REDIS_KEY" }}"
+      }
+    },
+    "postgresql": {
+      "1": {
+        "enable": {{ envBool "POSTGRESQL_ENABLE" }},
+        "format": "{{ envString "POSTGRESQL_FORMAT" }}",
+        "connectionString": "{{ envString "POSTGRESQL_CONNECTION_STRING" }}",
+        "table": "{{ envString "POSTGRESQL_TABLE" }}",
+        "host": "{{ envString "POSTGRESQL_HOST" }}",
+        "port": "{{ envString "POSTGRESQL_PORT" }}",
+        "user": "{{ envString "POSTGRESQL_USER" }}",
+        "password": "{{ envString "POSTGRESQL_PASSWORD" }}",
+        "database": "{{ envString "POSTGRESQL_DATABASE" }}"
+      }
+    },
+    "kafka": {
+      "1": {
+        "enable": {{ envBool "KAFKA_ENABLE" }},
+        "brokers": null,
+        "topic": "{{ envString "KAFKA_TOPIC" }}"
+      }
+    },
+    "webhook": {
+      "1": {
+        "enable": {{ envBool "WEBHOOK_ENABLE" }},
+        "endpoint": "{{ envString "WEBHOOK_ENDPOINT" }}"
+      }
+    },
+    "mysql": {
+      "1": {
+        "enable": {{ envBool "MYSQL_ENABLE" }},
+        "format": "{{ envString "MYSQL_FORMAT" }}",
+        "dsnString": "{{ envString "MYSQL_DNS_STRING" }}",
+        "table": "{{ envString "MYSQL_TABLE" }}",
+        "host": "{{ envString "MYSQL_HOST" }}",
+        "port": "{{ envString "MYSQL_PORT" }}",
+        "user": "{{ envString "MYSQL_USER" }}",
+        "password": "{{ envString "MYSQL_PASSWORD" }}",
+        "database": "{{ envString "MYSQL_DATABASE" }}"
+      }
+    },
+    "mqtt": {
+      "1": {
+        "enable": {{ envBool "MQTT_ENABLE" }},
+        "broker": "{{ envString "MQTT_BROKER" }}",
+        "topic": "{{ envString "MQTT_TOPIC" }}",
+        "qos": {{ envInt "MQTT_QOS" }},
+        "clientId": "{{ envString "MQTT_CLIENT_ID" }}",
+        "username": "{{ envString "MQTT_USERNAME" }}",
+        "password": "{{ envString "MQTT_PASSWORD" }}"
+      }
+    }
+  }
+}
