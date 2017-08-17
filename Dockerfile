@@ -11,7 +11,7 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
-ENV MINIO_BRANCH RELEASE.2017-07-24T18-27-35Z
+ENV MINIO_BRANCH RELEASE.2017-08-05T00-00-53Z
 
 ENV GOPATH /usr/local
 
