@@ -11,11 +11,12 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
-ENV MINIO_BRANCH RELEASE.2017-10-27T18-59-02Z
+ENV MINIO_BRANCH RELEASE.2018-07-13T00-09-07Z
 
 ENV GOPATH /usr/local
 
 RUN apk update && \
+  apk upgrade && \
   apk add \
     build-base \
     go \

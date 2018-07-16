@@ -6,14 +6,11 @@
   },
   "region": "{{ envString "REGION" }}",
   "browser": "{{ envString "BROWSER" }}",
-  "logger": {
-    "console": {
-      "enable": true
-    },
-    "file": {
-      "enable": false,
-      "filename": ""
-    }
+  "worm": "{{ envString "WORM" }}",
+  "domain": "{{ envString "DOMAIN" }}",
+  "storageclass": {
+    "standard": "{{ envString "STORAGECLASS_STANDARD" }}",
+    "rrs": "{{ envString "STORAGECLASS_RRS" }}"
   },
   "notify": {
     "amqp": {
@@ -115,7 +112,9 @@
         "qos": {{ envInt "MQTT_QOS" }},
         "clientId": "{{ envString "MQTT_CLIENT_ID" }}",
         "username": "{{ envString "MQTT_USERNAME" }}",
-        "password": "{{ envString "MQTT_PASSWORD" }}"
+        "password": "{{ envString "MQTT_PASSWORD" }}",
+        "reconnectInterval": {{ envInt "MQTT_RECONNECT_INTERVAL" }},
+        "keepAliveInterval": {{ envInt "MQTT_KEEPALIVE_INTERVAL" }}
       }
     }
   }
