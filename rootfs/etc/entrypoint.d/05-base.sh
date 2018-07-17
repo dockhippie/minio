@@ -16,7 +16,7 @@ declare -x MINIO_BROWSER
 [[ -z "${MINIO_BROWSER}" ]] && MINIO_BROWSER="on"
 
 declare -x MINIO_WORM
-[[ -z "${MINIO_WORM}" ]] && MINIO_WORM=""
+[[ -z "${MINIO_WORM}" ]] && MINIO_WORM="off"
 
 declare -x MINIO_DOMAIN
 [[ -z "${MINIO_DOMAIN}" ]] && MINIO_DOMAIN=""
