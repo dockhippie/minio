@@ -2,9 +2,9 @@
 source /usr/bin/entrypoint
 
 echo "> writing minio config"
-/usr/bin/templater -d -p minio \
+/usr/bin/gomplate -V \
   -o /root/.minio/config.json \
-  /etc/templates/config.tmpl
+  -f /etc/templates/config.tmpl
 
 if [[ $? -ne 0 ]]
 then
