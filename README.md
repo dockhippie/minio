@@ -1,5 +1,6 @@
 # Minio
 
+[![Build Status](https://cloud.drone.io/api/badges/dockhippie/minio/status.svg)](https://cloud.drone.io/dockhippie/minio)
 [![](https://images.microbadger.com/badges/image/webhippie/minio.svg)](https://microbadger.com/images/webhippie/minio "Get your own image badge on microbadger.com")
 
 These are docker images for [Minio](https://github.com/minio/minio) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
@@ -7,7 +8,7 @@ These are docker images for [Minio](https://github.com/minio/minio) running on a
 
 ## Versions
 
-To get an overview about the available versions please take a look at the [GitHub branches](https://github.com/dockhippie/minio/branches/all) or our [Docker Hub tags](https://hub.docker.com/r/webhippie/minio/tags/), these lists are always up to date.
+* [latest](./latest) available as `webhippie/minio:latest`
 
 
 ## Volumes
@@ -122,5 +123,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
 ```
