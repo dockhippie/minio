@@ -1,4 +1,4 @@
-FROM webhippie/golang:1.10-arm64v8 as build
+FROM webhippie/golang:1.10-arm64v8@sha256:2d9895e29065f51a0b2e081b60e3b0d3ff349f3991a3eddb9542a8ce1efae11c as build
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
@@ -8,7 +8,7 @@ RUN git clone -b ${MINIO_BRANCH} ${MINIO_REPO} /srv/app/src/${MINIO_PATH} && \
   cd /srv/app/src/${MINIO_PATH} && \
   go install
 
-FROM webhippie/alpine:latest-arm64v8
+FROM webhippie/alpine:latest-arm64v8@sha256:d2efbdbac9a0dfac0588e59b7701f2e2ebd8ab76ee6fd3abd92d70edfa6caf4a
 
 LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
   org.label-schema.name="Minio" \
