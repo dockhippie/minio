@@ -1,4 +1,4 @@
-FROM webhippie/golang:1.10-arm64v8@sha256:2d9895e29065f51a0b2e081b60e3b0d3ff349f3991a3eddb9542a8ce1efae11c as build
+FROM webhippie/golang:1.12-arm64v8@sha256:0f7a825b8717808d26531e97202d737de15b4e96fb3dc4ef4e007ab1f3e4beb5 as build
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
