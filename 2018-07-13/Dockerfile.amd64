@@ -12,7 +12,7 @@ FROM webhippie/alpine:latest
 
 LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
   org.label-schema.name="Minio" \
-  org.label-schema.vcs-url="https://github.com/dockhippie/minio.git" \
+  org.label-schema.version="2018-07-13" \
   org.label-schema.vendor="Thomas Boerger" \
   org.label-schema.schema-version="1.0"
 
