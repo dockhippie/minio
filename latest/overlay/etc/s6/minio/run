@@ -19,4 +19,4 @@ then
 fi
 
 echo "> starting minio service"
-exec minio server /var/lib/minio
+exec minio server "${MINIO_START_DIRECTORY}"

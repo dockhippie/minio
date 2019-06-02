@@ -1,13 +1,2 @@
 #!/bin/bash
 source /usr/bin/entrypoint
-
-echo "> writing minio config"
-/usr/bin/gomplate -V \
-  -o /root/.minio/config.json \
-  -f /etc/templates/config.tmpl
-
-if [[ $? -ne 0 ]]
-then
-  /bin/s6-svscanctl -t /etc/s6
-  exit 1
-fi
