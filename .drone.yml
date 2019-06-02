@@ -158,6 +158,164 @@ depends_on:
 
 ---
 kind: pipeline
+name: amd64-2019-06-01
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: dryrun
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.amd64
+    dry_run: true
+    repo: webhippie/minio
+    tags: 2019-06-01-amd64
+  when:
+    event:
+    - pull_request
+
+- name: publish
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.amd64
+    password:
+      from_secret: docker_password
+    repo: webhippie/minio
+    tags: 2019-06-01-amd64
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+
+trigger:
+  ref:
+  - refs/heads/master
+  - "refs/pull/**"
+
+---
+kind: pipeline
+name: arm32v6-2019-06-01
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+- name: dryrun
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.arm32v6
+    dry_run: true
+    repo: webhippie/minio
+    tags: 2019-06-01-arm32v6
+  when:
+    event:
+    - pull_request
+
+- name: publish
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.arm32v6
+    password:
+      from_secret: docker_password
+    repo: webhippie/minio
+    tags: 2019-06-01-arm32v6
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+
+trigger:
+  ref:
+  - refs/heads/master
+  - "refs/pull/**"
+
+---
+kind: pipeline
+name: arm64v8-2019-06-01
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: dryrun
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.arm64v8
+    dry_run: true
+    repo: webhippie/minio
+    tags: 2019-06-01-arm64v8
+  when:
+    event:
+    - pull_request
+
+- name: publish
+  pull: always
+  image: plugins/docker:latest
+  settings:
+    context: 2019-06-01
+    dockerfile: 2019-06-01/Dockerfile.arm64v8
+    password:
+      from_secret: docker_password
+    repo: webhippie/minio
+    tags: 2019-06-01-arm64v8
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+
+trigger:
+  ref:
+  - refs/heads/master
+  - "refs/pull/**"
+
+---
+kind: pipeline
+name: manifest-2019-06-01
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: manifest
+  pull: always
+  image: plugins/manifest:1
+  settings:
+    ignore_missing: true
+    password:
+      from_secret: docker_password
+    spec: 2019-06-01/manifest.tmpl
+    username:
+      from_secret: docker_username
+
+trigger:
+  ref:
+  - refs/heads/master
+
+depends_on:
+- amd64-2019-06-01
+- arm32v6-2019-06-01
+- arm64v8-2019-06-01
+
+---
+kind: pipeline
 name: amd64-2018-07-13
 
 platform:
@@ -336,6 +494,7 @@ trigger:
 
 depends_on:
 - manifest-latest
+- manifest-2019-06-01
 - manifest-2018-07-13
 
 ...
