@@ -39,7 +39,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -82,7 +82,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -125,7 +125,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -197,7 +197,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -240,7 +240,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -283,7 +283,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -316,7 +316,7 @@ depends_on:
 
 ---
 kind: pipeline
-name: amd64-2018-07-13
+name: amd64-2019-10-12
 
 platform:
   os: linux
@@ -327,11 +327,11 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.amd64
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.amd64
     dry_run: true
     repo: webhippie/minio
-    tags: 2018-07-13-amd64
+    tags: 2019-10-12-amd64
   when:
     event:
     - pull_request
@@ -340,12 +340,12 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.amd64
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.amd64
     password:
       from_secret: docker_password
     repo: webhippie/minio
-    tags: 2018-07-13-amd64
+    tags: 2019-10-12-amd64
     username:
       from_secret: docker_username
   when:
@@ -355,11 +355,11 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
-name: arm32v6-2018-07-13
+name: arm32v6-2019-10-12
 
 platform:
   os: linux
@@ -370,11 +370,11 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.arm32v6
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.arm32v6
     dry_run: true
     repo: webhippie/minio
-    tags: 2018-07-13-arm32v6
+    tags: 2019-10-12-arm32v6
   when:
     event:
     - pull_request
@@ -383,12 +383,12 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.arm32v6
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.arm32v6
     password:
       from_secret: docker_password
     repo: webhippie/minio
-    tags: 2018-07-13-arm32v6
+    tags: 2019-10-12-arm32v6
     username:
       from_secret: docker_username
   when:
@@ -398,11 +398,11 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
-name: arm64v8-2018-07-13
+name: arm64v8-2019-10-12
 
 platform:
   os: linux
@@ -413,11 +413,11 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.arm64v8
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.arm64v8
     dry_run: true
     repo: webhippie/minio
-    tags: 2018-07-13-arm64v8
+    tags: 2019-10-12-arm64v8
   when:
     event:
     - pull_request
@@ -426,12 +426,12 @@ steps:
   pull: always
   image: plugins/docker:latest
   settings:
-    context: 2018-07-13
-    dockerfile: 2018-07-13/Dockerfile.arm64v8
+    context: 2019-10-12
+    dockerfile: 2019-10-12/Dockerfile.arm64v8
     password:
       from_secret: docker_password
     repo: webhippie/minio
-    tags: 2018-07-13-arm64v8
+    tags: 2019-10-12-arm64v8
     username:
       from_secret: docker_username
   when:
@@ -441,11 +441,11 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - "refs/pull/**"
+  - refs/pull/**
 
 ---
 kind: pipeline
-name: manifest-2018-07-13
+name: manifest-2019-10-12
 
 platform:
   os: linux
@@ -459,7 +459,7 @@ steps:
     ignore_missing: true
     password:
       from_secret: docker_password
-    spec: 2018-07-13/manifest.tmpl
+    spec: 2019-10-12/manifest.tmpl
     username:
       from_secret: docker_username
 
@@ -468,9 +468,9 @@ trigger:
   - refs/heads/master
 
 depends_on:
-- amd64-2018-07-13
-- arm32v6-2018-07-13
-- arm64v8-2018-07-13
+- amd64-2019-10-12
+- arm32v6-2019-10-12
+- arm64v8-2019-10-12
 
 ---
 kind: pipeline
@@ -495,6 +495,6 @@ trigger:
 depends_on:
 - manifest-latest
 - manifest-2019-06-01
-- manifest-2018-07-13
+- manifest-2019-10-12
 
 ...
