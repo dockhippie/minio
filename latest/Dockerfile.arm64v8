@@ -2,7 +2,7 @@ FROM webhippie/golang:1.13-arm64v8 as build
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
-ENV MINIO_BRANCH RELEASE.2019-10-12T01-39-57Z
+ENV MINIO_BRANCH RELEASE.2019-12-19T22-52-26Z
 
 RUN git clone -b ${MINIO_BRANCH} ${MINIO_REPO} /srv/app/src/${MINIO_PATH} && \
   cd /srv/app/src/${MINIO_PATH} && \
