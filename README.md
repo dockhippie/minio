@@ -9,11 +9,12 @@ These are docker images for [Minio](https://github.com/minio/minio) running on a
 ## Versions
 
 * [latest](./latest) available as `webhippie/minio:latest`
-* [latest](./2020-01-16) available as `webhippie/minio:2020-01-16`
-* [latest](./2019-12-19) available as `webhippie/minio:2019-12-19`
-* [latest](./2019-10-12) available as `webhippie/minio:2019-10-12`
-* [latest](./2019-06-01) available as `webhippie/minio:2019-06-01`
-* [latest](./2018-07-13) available as `webhippie/minio:2018-07-13`
+* [2020-03-05](./2020-03-05) available as `webhippie/minio:2020-03-05`
+* [2020-01-16](./2020-01-16) available as `webhippie/minio:2020-01-16`
+* [2019-12-19](./2019-12-19) available as `webhippie/minio:2019-12-19`
+* [2019-10-12](./2019-10-12) available as `webhippie/minio:2019-10-12`
+* [2019-06-01](./2019-06-01) available as `webhippie/minio:2019-06-01`
+* [2018-07-13](./2018-07-13) available as `webhippie/minio:2018-07-13`
 
 
 ## Volumes
