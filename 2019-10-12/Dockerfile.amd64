@@ -1,4 +1,4 @@
-FROM webhippie/golang:1.21-amd64 as build
+FROM webhippie/golang:1.23-amd64 as build
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
