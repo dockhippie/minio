@@ -1,31 +1,26 @@
-FROM webhippie/golang:1.23-amd64 as build
+FROM ghcr.io/dockhippie/golang:1.23-amd64 AS build
 
-ENV MINIO_PATH github.com/minio/minio
-ENV MINIO_REPO https://${MINIO_PATH}.git
-ENV MINIO_BRANCH RELEASE.2018-07-13T00-09-07Z
+ENV MINIO_VERSION=RELEASE.2018-07-13T00-09-07Z
 
-RUN git clone -b ${MINIO_BRANCH} ${MINIO_REPO} /srv/app/src/${MINIO_PATH} && \
-  cd /srv/app/src/${MINIO_PATH} && \
-  go install
+RUN apk add --no-cache perl && \
+  git clone -b ${MINIO_VERSION} https://github.com/minio/minio.git /srv/app/src/github.com/minio/minio && \
+  cd /srv/app/src/github.com/minio/minio && \
+  make install
 
-FROM webhippie/alpine:latest-amd64
-
-LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
-  org.label-schema.name="Minio" \
-  org.label-schema.version="2018-07-13" \
-  org.label-schema.vendor="Thomas Boerger" \
-  org.label-schema.schema-version="1.0"
-
-EXPOSE 9000
+FROM ghcr.io/dockhippie/alpine:latest-amd64
 
 VOLUME ["/var/lib/minio"]
-WORKDIR /root
-ENTRYPOINT ["/usr/bin/entrypoint"]
-CMD ["/bin/s6-svscan", "/etc/s6"]
+EXPOSE 9000
+
+WORKDIR /var/lib/minio
+CMD ["/usr/bin/container"]
 
 RUN apk update && \
   apk upgrade && \
+  mkdir -p /var/lib/minio && \
+  groupadd -g 1000 minio && \
+  useradd -u 1000 -d /var/lib/minio -g minio -s /bin/bash -M minio && \
   rm -rf /var/cache/apk/*
 
 COPY --from=build /srv/app/bin/minio /usr/bin/minio
-COPY ./overlay ./overlay-amd64 /
+COPY ./overlay /

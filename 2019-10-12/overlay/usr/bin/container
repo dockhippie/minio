@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+source /usr/bin/entrypoint
+
+for FILE in $(find /etc/container.d -type f -iname \*.sh | sort); do
+    source ${FILE}
+done
+
+echo "> starting minio service"
+exec su-exec minio minio server "${MINIO_START_DIRECTORY}"

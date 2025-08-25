@@ -8,3 +8,14 @@ declare -x MINIO_SECRET_KEY
 
 declare -x MINIO_START_DIRECTORY
 [[ -z "${MINIO_START_DIRECTORY}" ]] && MINIO_START_DIRECTORY="/var/lib/minio"
+
+declare -x MINIO_SKIP_CHOWN
+[[ -z "${MINIO_SKIP_CHOWN}" ]] && MINIO_SKIP_CHOWN="false"
+
+declare -x MINIO_HEALTHCHECK_URL
+[[ -z "${MINIO_HEALTHCHECK_URL}" ]] && MINIO_HEALTHCHECK_URL="http://localhost:9000/minio/health/live"
+
+declare -x MINIO_HEALTHCHECK_CODE
+[[ -z "${MINIO_HEALTHCHECK_CODE}" ]] && MINIO_HEALTHCHECK_CODE="200"
+
+true

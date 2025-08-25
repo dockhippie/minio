@@ -3,5 +3,18 @@
     "extends": [
         "github>dockhippie/.github//renovate/preset"
     ],
-    "packageRules": []
+    "packageRules": [
+        {
+            "description": "Update golang docker images",
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "major",
+                "minor"
+            ],
+            "enabled": true,
+            "automerge": true
+        }
+    ]
 }

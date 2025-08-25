@@ -6,17 +6,16 @@ declare -x MINIO_ACCESS_KEY
 declare -x MINIO_SECRET_KEY
 [[ -z "${MINIO_SECRET_KEY}" ]] && MINIO_SECRET_KEY="$(< /dev/urandom tr -dc _A-Za-z0-9+- | head -c40)"
 
-declare -x MINIO_VERSION
-[[ -z "${MINIO_VERSION}" ]] && MINIO_VERSION="26"
+declare -x MINIO_START_DIRECTORY
+[[ -z "${MINIO_START_DIRECTORY}" ]] && MINIO_START_DIRECTORY="/var/lib/minio"
 
-declare -x MINIO_REGION
-[[ -z "${MINIO_REGION}" ]] && MINIO_REGION=""
+declare -x MINIO_SKIP_CHOWN
+[[ -z "${MINIO_SKIP_CHOWN}" ]] && MINIO_SKIP_CHOWN="false"
 
-declare -x MINIO_BROWSER
-[[ -z "${MINIO_BROWSER}" ]] && MINIO_BROWSER="on"
+declare -x MINIO_HEALTHCHECK_URL
+[[ -z "${MINIO_HEALTHCHECK_URL}" ]] && MINIO_HEALTHCHECK_URL="http://localhost:9000/minio/health/live"
 
-declare -x MINIO_WORM
-[[ -z "${MINIO_WORM}" ]] && MINIO_WORM="off"
+declare -x MINIO_HEALTHCHECK_CODE
+[[ -z "${MINIO_HEALTHCHECK_CODE}" ]] && MINIO_HEALTHCHECK_CODE="200"
 
-declare -x MINIO_DOMAIN
-[[ -z "${MINIO_DOMAIN}" ]] && MINIO_DOMAIN=""
+true

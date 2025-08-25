@@ -1,13 +1,12 @@
 ---
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: readme
 
 "on":
+  workflow_dispatch:
   push:
     branches:
       - master
-    paths:
-      - README.md
-  workflow_dispatch:
 
 jobs:
   readme:
@@ -15,21 +14,20 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
-      - name: Push readme
-        uses: actionhippie/pushrm@v1
-        if: github.event_name != 'pull_request'
+      - name: Hub readme
+        uses: actionhippie/pushrm@d4137e5e7261e06ddc57e0efece0fb4f589abb0a # v1
         with:
           provider: dockerhub
           target: webhippie/minio
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          description: Docker image for minio
+          description: Docker image for MinIO
           readme: README.md
 
-      - name: Push readme
-        uses: actionhippie/pushrm@v1
+      - name: Quay readme
+        uses: actionhippie/pushrm@d4137e5e7261e06ddc57e0efece0fb4f589abb0a # v1
         with:
           provider: quay
           target: quay.io/webhippie/minio

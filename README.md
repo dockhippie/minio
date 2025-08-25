@@ -1,63 +1,63 @@
-# Minio
+# minio
 
-[![Build Status](https://cloud.drone.io/api/badges/dockhippie/minio/status.svg)](https://cloud.drone.io/dockhippie/minio)
-[![](https://images.microbadger.com/badges/image/webhippie/minio.svg)](https://microbadger.com/images/webhippie/minio "Get your own image badge on microbadger.com")
+[![Docker Build](https://github.com/dockhippie/minio/actions/workflows/docker.yml/badge.svg)](https://github.com/dockhippie/minio/actions/workflows/docker.yml) [![GitHub Repo](https://img.shields.io/badge/github-repo-yellowgreen)](https://github.com/dockhippie/minio)
 
-These are docker images for [Minio](https://github.com/minio/minio) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-
+These are docker images for [MinIO][upstream] running on our
+[Alpine Linux image][parent].
 
 ## Versions
 
-* [latest](./latest) available as `webhippie/minio:latest`
-* [2020-03-05](./2020-03-05) available as `webhippie/minio:2020-03-05`
-* [2020-01-16](./2020-01-16) available as `webhippie/minio:2020-01-16`
-* [2019-12-19](./2019-12-19) available as `webhippie/minio:2019-12-19`
-* [2019-10-12](./2019-10-12) available as `webhippie/minio:2019-10-12`
-* [2019-06-01](./2019-06-01) available as `webhippie/minio:2019-06-01`
-* [2018-07-13](./2018-07-13) available as `webhippie/minio:2018-07-13`
-
+For the available versions please look at [Docker Hub][dockerhub] or
+[Quay][quayio] or check the existing folders within the
+[GitHub repository][github].
 
 ## Volumes
 
-* /var/lib/minio
-
+*  /var/lib/minio
 
 ## Ports
 
-* 9000
-
+*  9000
 
 ## Available environment variables
 
 ```bash
-MINIO_ACCESS_KEY =
-MINIO_SECRET_KEY =
+MINIO_ACCESS_KEY = # until 2019-10-12
+MINIO_ADDRESS = 0.0.0.0:9000 # from 2025-07-23
+MINIO_CONSOLE_ADDRESS = 0.0.0.0:9001 # from 2025-07-23
+MINIO_HEALTHCHECK_CODE = 200
+MINIO_HEALTHCHECK_URL = http://${MINIO_ADDRESS}/minio/health/live
+MINIO_ROOT_PASSWORD = # from 2025-07-23
+MINIO_ROOT_USER = # from 2025-07-23
+MINIO_SECRET_KEY = # until 2019-10-12
+MINIO_SKIP_CHOWN = false
 MINIO_START_DIRECTORY = /var/lib/minio
 ```
 
-
 ## Inherited environment variables
 
-* [webhippie/alpine](https://github.com/dockhippie/alpine#available-environment-variables)
-
+*  [webhippie/alpine](https://github.com/dockhippie/alpine#available-environment-variables)
 
 ## Contributing
 
 Fork -> Patch -> Push -> Pull Request
 
-
 ## Authors
 
-* [Thomas Boerger](https://github.com/tboerger)
-
+*  [Thomas Boerger](https://github.com/tboerger)
 
 ## License
 
 MIT
-
 
 ## Copyright
 
 ```
 Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
 ```
+
+[upstream]: https://github.com/minio/minio
+[parent]: https://github.com/dockhippie/alpine
+[dockerhub]: https://hub.docker.com/r/webhippie/minio/tags
+[quayio]: https://quay.io/repository/webhippie/minio?tab=tags
+[github]: https://github.com/dockhippie/minio

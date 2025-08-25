@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
-name: latest
+name: 2019-06-01
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -12,11 +12,14 @@ concurrency:
     branches:
       - master
     paths:
-      - latest/*
-      - .github/workflows/docker.yml
+      - 2019-06-01/*
+      - .github/workflows/2019-06-01.yml
   pull_request:
     branches:
       - master
+    paths:
+      - 2019-06-01/*
+      - .github/workflows/2019-06-01.yml
 
 permissions:
   contents: read
@@ -88,18 +91,18 @@ jobs:
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: latest/
+          context: 2019-06-01/
           provenance: false
-          file: latest/Dockerfile.${{ matrix.variant.arch }}
+          file: 2019-06-01/Dockerfile.${{ matrix.variant.arch }}
           platforms: ${{ matrix.variant.platform }}
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            webhippie/minio:latest-${{ matrix.variant.arch }}
-            quay.io/webhippie/minio:latest-${{ matrix.variant.arch }}
-            ghcr.io/dockhippie/minio:latest-${{ matrix.variant.arch }}
+            webhippie/minio:2019-06-01-${{ matrix.variant.arch }}
+            quay.io/webhippie/minio:2019-06-01-${{ matrix.variant.arch }}
+            ghcr.io/dockhippie/minio:2019-06-01-${{ matrix.variant.arch }}
 
   manifest:
     runs-on: ubuntu-latest
@@ -113,7 +116,7 @@ jobs:
         run: |
           set -euo pipefail
           REPO="webhippie/minio"
-          TAG="latest"
+          TAG="2019-06-01"
           ARCHS=("amd64" "arm64" "arm")
 
           retry() {
@@ -142,8 +145,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: webhippie/minio:latest-ARCH
-          target: webhippie/minio:latest
+          template: webhippie/minio:2019-06-01-ARCH
+          target: webhippie/minio:2019-06-01
           ignore_missing: true
 
       - name: Quay manifest
@@ -152,8 +155,8 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: quay.io/webhippie/minio:latest-ARCH
-          target: quay.io/webhippie/minio:latest
+          template: quay.io/webhippie/minio:2019-06-01-ARCH
+          target: quay.io/webhippie/minio:2019-06-01
           ignore_missing: true
 
       - name: Ghcr manifest
@@ -162,8 +165,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: ghcr.io/dockhippie/minio:latest-ARCH
-          target: ghcr.io/dockhippie/minio:latest
+          template: ghcr.io/dockhippie/minio:2019-06-01-ARCH
+          target: ghcr.io/dockhippie/minio:2019-06-01
           ignore_missing: true
 
 ...
