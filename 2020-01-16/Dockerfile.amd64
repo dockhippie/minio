@@ -1,4 +1,4 @@
-FROM ghcr.io/dockhippie/golang:1.23-amd64@sha256:c5e6f7ed526f0f4a893dc465369b2ea5da2a424bdbc77a7aa7ee2f440d2a3e83 as build
+FROM ghcr.io/dockhippie/golang:1.23-amd64@sha256:dfb7a5af97bab128270db1b2ff4ef7f4d2e61e893ada566e0aa63bf8257efe45 as build
 
 ENV MINIO_PATH github.com/minio/minio
 ENV MINIO_REPO https://${MINIO_PATH}.git
@@ -8,7 +8,7 @@ RUN git clone -b ${MINIO_BRANCH} ${MINIO_REPO} /srv/app/src/${MINIO_PATH} && \
   cd /srv/app/src/${MINIO_PATH} && \
   GO111MODULE=on go install
 
-FROM ghcr.io/dockhippie/alpine:latest-amd64@sha256:a109ce2151f8811f7dfcf8ed3a7437c792897f5455c2689ceea4e5db694faccf
+FROM ghcr.io/dockhippie/alpine:latest-amd64@sha256:458f51fa9c24d94a87ced39f652ba8d2eec710748c738a174e88c5a8f133a85b
 
 LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
   org.label-schema.name="Minio" \
