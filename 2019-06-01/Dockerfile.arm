@@ -7,7 +7,7 @@ RUN apk add --no-cache perl && \
   cd /srv/app/src && \
   make install
 
-FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:82a4e125ad57385800b271d9dc448ce932e061ece5af5ba1f5eb2be97701c555
+FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:8253d93cf993bf7d69fcacebb3da4454d5b138325ddf51a0881df39b0df86007
 
 VOLUME ["/var/lib/minio"]
 EXPOSE 9000
