@@ -1,0 +1,26 @@
+FROM ghcr.io/dockhippie/golang:1.23-amd64@sha256:b0aeaf85f10d01a0956bd012db865f4e68f239b531fbaae7930ee2711bac80ed AS build
+
+ENV MINIO_VERSION=RELEASE.2025-10-15T17-29-55Z
+
+RUN apk add --no-cache perl && \
+  git clone -b ${MINIO_VERSION} https://github.com/minio/minio.git /srv/app/src && \
+  cd /srv/app/src && \
+  make install
+
+FROM ghcr.io/dockhippie/alpine:latest-amd64@sha256:e176659cbc7e4a93c851f010a1b722194e1bbc09296376e91af4855dda993a05
+
+VOLUME ["/var/lib/minio"]
+EXPOSE 9000 9001
+
+WORKDIR /var/lib/minio
+CMD ["/usr/bin/container"]
+
+RUN apk update && \
+  apk upgrade && \
+  mkdir -p /var/lib/minio && \
+  groupadd -g 1000 minio && \
+  useradd -u 1000 -d /var/lib/minio -g minio -s /bin/bash -M minio && \
+  rm -rf /var/cache/apk/*
+
+COPY --from=build /srv/app/bin/minio /usr/bin/minio
+COPY ./overlay /

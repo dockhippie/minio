@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eo pipefail
+source /usr/bin/entrypoint
+
+CHECK="$(curl -sL -w %{http_code} -o /dev/null ${MINIO_HEALTHCHECK_URL})"
+
+if [[ "${CHECK}" == "${MINIO_HEALTHCHECK_CODE}" ]]; then
+    exit 0
+fi
+
+exit 1
