@@ -22,17 +22,17 @@ For the available versions please look at [Docker Hub][dockerhub] or
 ## Available environment variables
 
 ```bash
-MINIO_ACCESS_KEY = # until 2019-10-12
-MINIO_ADDRESS = 0.0.0.0:9000 # from 2025-07-23
-MINIO_CONSOLE_ADDRESS = 0.0.0.0:9001 # from 2025-07-23
+MINIO_ADDRESS = 0.0.0.0:9000
+MINIO_CONSOLE_ADDRESS = 0.0.0.0:9001
 MINIO_HEALTHCHECK_CODE = 200
 MINIO_HEALTHCHECK_URL = http://${MINIO_ADDRESS}/minio/health/live
-MINIO_ROOT_PASSWORD = # from 2025-07-23
-MINIO_ROOT_USER = # from 2025-07-23
-MINIO_SECRET_KEY = # until 2019-10-12
+MINIO_ROOT_PASSWORD = $(< /dev/urandom tr -dc _A-Za-z0-9+- | head -c40)
+MINIO_ROOT_USER = $(< /dev/urandom tr -dc A-Z0-9 | head -c20)
 MINIO_SKIP_CHOWN = false
 MINIO_START_DIRECTORY = /var/lib/minio
 ```
+
+Extracted by the command: `grep -hE ': "\$\{(.*)\}"' latest/overlay/etc/entrypoint.d/*.sh | sed 's/: "\${//' | sed 's/:="/ = /' | sed 's/"}"$//' | sort | uniq`
 
 ## Inherited environment variables
 
