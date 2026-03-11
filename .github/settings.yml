@@ -1,6 +1,6 @@
 repository:
   name: minio
-  description: Docker images for minio
+  description: Docker images for MinIO
   topics: docker, image
 
   private: false
