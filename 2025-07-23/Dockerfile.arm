@@ -1,4 +1,4 @@
-FROM ghcr.io/dockhippie/golang:1.25-arm@sha256:ffa0f914901e5f4ddddd06979ae2fbaac2d439cac981e7467318d18fe4a54525 AS build
+FROM ghcr.io/dockhippie/golang:1.25-arm@sha256:f636873373e4b8cd9a7ec6ace26633fe584deb7e91bbcb9d6dd7ec497a386845 AS build
 
 ENV MINIO_VERSION=RELEASE.2025-07-23T15-54-02Z
 
@@ -7,7 +7,7 @@ RUN apk add --no-cache perl && \
   cd /srv/app/src && \
   make install
 
-FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:360f43f024c05504de66535928f87fe25100a1f7016f6afd8bfc646f0ff4453f
+FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:19e1a7f3699b66f9e99a2ce7c0cf958882ae9527c1a21965ab7e2cce5282f41b
 
 VOLUME ["/var/lib/minio"]
 EXPOSE 9000 9001
