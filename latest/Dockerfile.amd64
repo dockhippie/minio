@@ -1,4 +1,4 @@
-FROM ghcr.io/dockhippie/golang:1.26-amd64@sha256:0543d97ccfffbdfbb83fcdaec895a39c2c14e4a1138a077c8182b4a1bbc40eb4 AS build
+FROM ghcr.io/dockhippie/golang:1.26-amd64@sha256:2252a4fc7715a6620b4e68603e6eea65396af68dccc8ad8341a0a80531d669b4 AS build
 
 RUN apk add --no-cache perl && \
   git clone -b master https://github.com/minio/minio.git /srv/app/src && \

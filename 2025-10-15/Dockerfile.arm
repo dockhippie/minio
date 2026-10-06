@@ -1,4 +1,4 @@
-FROM ghcr.io/dockhippie/golang:1.26-arm@sha256:f1aed0527e7641e9650d29a5d7b257c028964da19d7aad13908e215886561a89 AS build
+FROM ghcr.io/dockhippie/golang:1.26-arm@sha256:3d3e0130356f1245d965fbf7aeef14784ae2ac59d911271e05d2a90080ee72e2 AS build
 
 ENV MINIO_VERSION=RELEASE.2025-10-15T17-29-55Z
 
