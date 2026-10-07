@@ -1,4 +1,4 @@
-FROM ghcr.io/dockhippie/golang:1.26-amd64@sha256:9bee16e548cd591813c92e67c7e2ad3a14f1d27a1b71ba5340457448074e74bd AS build
+FROM ghcr.io/dockhippie/golang:1.27-amd64@sha256:f88027e451e641b5ad0f3659e8b6babaec1b4234502d2336cb90a9470a387685 AS build
 
 ENV MINIO_VERSION=RELEASE.2019-10-12T01-39-57Z
 
